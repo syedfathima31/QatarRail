@@ -31,7 +31,6 @@ export class ApiService {
   post(path:string ,data: any): Observable<any> {
     return this.http.post(`${this.apiURL}${path}`,JSON.stringify(data),this.httpOptions)
     .pipe(
-      tap(data => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -40,7 +39,6 @@ export class ApiService {
   put(path:string,data: any): Observable<any> {
     return this.http.put(`${this.apiURL}${path}`,JSON.stringify(data),this.httpOptions)
     .pipe(
-      tap(data => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -49,8 +47,7 @@ export class ApiService {
     this.httpOptions['params'] = params;
     return this.http.get(`${this.apiURL}${path}`,this.httpOptions)
     .pipe(
-      tap(data => console.log('All: ', JSON.stringify(data))),
-      catchError(this.handleError)
+     catchError(this.handleError)
     );
   }
   
@@ -58,7 +55,6 @@ export class ApiService {
   get(path:string): Observable<any> {
     return this.http.get(`${this.apiURL}${path}`,this.httpOptions)
     .pipe(
-      tap(data => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -66,7 +62,6 @@ export class ApiService {
   delete(path:string): Observable<any> {
     return this.http.delete(`${this.apiURL}${path}`,this.httpOptions)
     .pipe(
-      tap(data => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

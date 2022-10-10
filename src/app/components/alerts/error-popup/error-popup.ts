@@ -24,6 +24,7 @@ export class ErrorPopupComponent {
   }
 
   showMessage(message:string): void {
+    console.log('message',message)
     this.message = message;
   }
  
@@ -33,7 +34,6 @@ export class ErrorPopupComponent {
   }
 
   closeModal(){
-    alert(1)
-    this.modalRef?.hide();
+    this.modalService.hide();
   }
 }

@@ -16,10 +16,16 @@
                           <form [formGroup]="loginForm" (ngSubmit) ="onSubmit()">
                               <div class="form-group mb-3">
                                   <input id="inputEmail" type="email" formControlName="username" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
-                              </div>
+                                  <span *ngIf="isSubmitted && loginForm.controls['username'].invalid" class="text-danger">
+                                    Username is Required
+                                  </span>
+                                </div>
                               <div class="form-group mb-3">
                                   <input id="inputPassword" type="password" formControlName="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
-                              </div>
+                                  <span *ngIf="isSubmitted && loginForm.controls['password'].invalid" class="text-danger">
+                                   Password is required
+                                  </span>
+                                </div>
                               <div class="custom-control custom-checkbox mb-3">
                                   <input id="customCheck1" type="checkbox" checked class="custom-control-input">
                                   <label for="customCheck1" class="custom-control-label">Remember password</label>

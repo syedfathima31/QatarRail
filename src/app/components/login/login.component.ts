@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
       "scope": "*"
     }
     this.isSubmitted = true;
-    if (this.loginForm.valid ) {
-
+    if (this.isSubmitted && this.loginForm.valid ) {
       this.loginService.onLogin(loginData).subscribe({
         next: response => {
           if (response) {
             this.webStorageService.saveData('user', response);
-            this.router.navigate(['/home']);
+            this.modalService.show(ErrorPopupComponent).content?.showMessage(response.message)
+             this.router.navigate(['/home']);
           } else {
           }
         },

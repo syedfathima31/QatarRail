@@ -7,12 +7,12 @@ import {
   CanDeactivate
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import {} from '@app/'
+import { AuthService } from '../services/auth.service';
 @Injectable()
 export class UserLoadPermission implements CanActivate {
-  authService: any;
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   canActivate(
@@ -20,7 +20,7 @@ export class UserLoadPermission implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
     if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['auth/login']);
+      this.router.navigate(['/login']);
       return false;
     }
     return true;

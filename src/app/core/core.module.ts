@@ -2,7 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpErrorIntercept } from './interceptors/http.error.interceptor'
+import { HttpErrorIntercept } from './interceptors/http.error.interceptor';
+import { HttpHeaderIntercept } from './interceptors/http.header.interceptor';
 import { ApiService } from './services/api.service';
 import { AuthService} from './services/auth.service';
 
@@ -10,6 +11,11 @@ import { AuthService} from './services/auth.service';
   imports: [CommonModule],
   declarations: [],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeaderIntercept,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorIntercept,

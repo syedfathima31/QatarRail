@@ -1,8 +1,8 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl,FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService}  from './login.service';
-import { ErrorPopupComponent}  from '../alerts/error-popup/error-popup'
+import { ErrorPopupComponent}  from '../../shared/components/error-popup/error-popup'
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WebStorageService } from 'src/app/core';
 @Component({
@@ -12,7 +12,6 @@ import { WebStorageService } from 'src/app/core';
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('alertModal') alertModal: TemplateRef<any>;
   public loginForm!: FormGroup;
   isSubmitted: boolean = false;
   constructor(private fb :FormBuilder,
@@ -34,8 +33,7 @@ export class LoginComponent implements OnInit {
    * Login on Save
    */
    onSubmit() {
-    console.log('inside on submit')
-    const loginData = {
+   const loginData = {
       "username": "anishrtvpm@gmail.com",
       "password": "Test123@",
       "grant_type": "password",
@@ -49,12 +47,15 @@ export class LoginComponent implements OnInit {
         next: response => {
           if (response) {
             this.webStorageService.saveData('user', response);
-            this.modalService.show(ErrorPopupComponent).content?.showMessage(response.message)
-             this.router.navigate(['/home']);
+            setTimeout(() => {
+           this.router.navigate(['/home']);
+            }, 1000);
           } else {
           }
         },
         error: err => {
+          this.modalService.show(ErrorPopupComponent).content?.showMessage(err.message)
+            
         }
       });
     }

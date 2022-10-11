@@ -8,28 +8,13 @@ import { Params } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  constructor(private http: HttpClient,
-    private authService : AuthService) { }
-
   private apiURL = environment.apiUrl;
-  private token = this.authService.getToken();
-
-
-  
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization':`Bearer ${this.token}`
-    }),
-    params : {
-
-    }
-  };
+  constructor(private http: HttpClient,) {
+   }
 
 
   post(path:string ,data: any): Observable<any> {
-    return this.http.post(`${this.apiURL}${path}`,JSON.stringify(data),this.httpOptions)
+    return this.http.post(`${this.apiURL}${path}`,JSON.stringify(data))
     .pipe(
       catchError(this.handleError)
     );
@@ -37,15 +22,15 @@ export class ApiService {
 
 
   put(path:string,data: any): Observable<any> {
-    return this.http.put(`${this.apiURL}${path}`,JSON.stringify(data),this.httpOptions)
+    return this.http.put(`${this.apiURL}${path}`,JSON.stringify(data))
     .pipe(
       catchError(this.handleError)
     );
   }
 
   getAll(path:string,params:Params): Observable<any> {
-    this.httpOptions['params'] = params;
-    return this.http.get(`${this.apiURL}${path}`,this.httpOptions)
+    //this.httpOptions['params'] = params;
+    return this.http.get(`${this.apiURL}${path}`,{params :params})
     .pipe(
      catchError(this.handleError)
     );
@@ -53,14 +38,14 @@ export class ApiService {
   
 
   get(path:string): Observable<any> {
-    return this.http.get(`${this.apiURL}${path}`,this.httpOptions)
+    return this.http.get(`${this.apiURL}${path}`)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   delete(path:string): Observable<any> {
-    return this.http.delete(`${this.apiURL}${path}`,this.httpOptions)
+    return this.http.delete(`${this.apiURL}${path}`)
     .pipe(
       catchError(this.handleError)
     );

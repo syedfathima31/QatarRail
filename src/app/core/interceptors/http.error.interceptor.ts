@@ -30,8 +30,8 @@ export class HttpErrorIntercept implements HttpInterceptor {
                       if (error.status == 0) {
                         errorMessage = 'Please check the network connection and try again.';
                       } else if (error.status === 401) {
-                        this.authService.onLogOut();
-                        this.router.navigate(['/login'])
+                       // this.authService.onLogOut();
+                       // this.router.navigate(['/login'])
 
                       }
                       errorMessage = `Error: ${error.error.message}`;

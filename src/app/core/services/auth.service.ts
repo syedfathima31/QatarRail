@@ -1,4 +1,3 @@
-// import { SignalrService } from './signalr.service';
 import { Injectable } from '@angular/core';
 import { AppConfigurationService } from './app-configuration.service';
 import { WebStorageService } from './web-storage.service';
@@ -41,7 +40,7 @@ export class AuthService {
   /**Check for user is logged in or not */
   public isAuthenticated() {
     const userData = this._webStorageService.getData('user');
-    if (userData.hasOwnProperty('token')) {
+    if (userData.hasOwnProperty('access_token')) {
       return true;
     }
     return false;

@@ -4,14 +4,15 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppHeaderComponent } from './shared/components/app-header/app-header.component';
 import { AppFooterComponent } from './shared/components/app-footer/app-footer.component';
 import { ErrorPopupComponent } from './shared/components/error-popup/error-popup';
+import { UserLoadPermission } from './core/guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ErrorPopupComponent } from './shared/components/error-popup/error-popup
     AppHeaderComponent,
     AppFooterComponent
   ],
-  providers: [],
+  providers: [UserLoadPermission],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

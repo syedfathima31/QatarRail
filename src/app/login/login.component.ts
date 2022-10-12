@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService}  from './login.service';
-import { ErrorPopupComponent}  from '../../shared/components/error-popup/error-popup'
+import { ErrorPopupComponent}  from '../shared/components/error-popup/error-popup'
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WebStorageService } from 'src/app/core';
 @Component({
